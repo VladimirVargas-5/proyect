@@ -6,6 +6,7 @@ import ui.MyAccount;
 
 public class GoToWoman {
     public static void go(WebDriver driver){
+
         Click.on(driver, MyAccount.ButtonWoman);
     }
 }
