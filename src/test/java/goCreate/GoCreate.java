@@ -7,8 +7,8 @@ import tasks.GoToCreate;
 public class GoCreate extends BaseTest {
 
     @Test
-    public void testSuccessfullGo(){
-        GoToCreate.as(webDriver, "testdiplo@gmail.com");
+    public void testSuccessGoToCreate(){
+        GoToCreate.as(webDriver, "testdiplo45@gmail.com");
     }
 
 

@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 public class GoTops extends BaseTest {
 
     @Test
-    public void testSuccessfullGo(){
-        GoToCreate.as(webDriver, "testdiplo6@gmail.com");
+    public void testSuccessSelectTops(){
+        GoToCreate.as(webDriver, "testdiplo49@gmail.com");
         webDriver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
         AddClient.withTheData(webDriver, "Test", "Testing","123456789", "ProcessMaker",
                 "Zona Sur", "La Paz", "California", "00000", "United States", "Test para Diplomado",

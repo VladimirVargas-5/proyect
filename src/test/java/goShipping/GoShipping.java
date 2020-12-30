@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 public class GoShipping extends BaseTest {
     @Test
-    public void testSuccessfullGo(){
-        GoToCreate.as(webDriver, "testdiplo12@gmail.com");
+    public void testSuccessShipping(){
+        GoToCreate.as(webDriver, "testdiplo47@gmail.com");
         webDriver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
         AddClient.withTheData(webDriver, "Test", "Testing","123456789", "ProcessMaker",
                 "Zona Sur", "La Paz", "California", "00000", "United States", "Test para Diplomado",

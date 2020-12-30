@@ -3,7 +3,10 @@ package tasks;
 import actions.Choose;
 import actions.Click;
 import actions.Enter;
+import com.aventstack.extentreports.Status;
+import helper.ScreenShotHelper;
 import org.openqa.selenium.WebDriver;
+import report.ReportManager;
 import ui.CreateUI;
 
 public class AddClient {
@@ -26,6 +29,8 @@ public class AddClient {
         Enter.text(webDriver, CreateUI.phone, phone);
         Enter.text(webDriver, CreateUI.MobilePhone, mobile);
         Enter.text(webDriver, CreateUI.alias, alias);
+        ReportManager.getInstance().getTest().log(Status.INFO,"Registrar los datos del nuevo Usuario");
+        ScreenShotHelper.takeScreenShotAndAdToHTMLReport(webDriver,Status.INFO,"Usuario Creado");
         Click.on(webDriver, CreateUI.buttonRegister);
 
          }

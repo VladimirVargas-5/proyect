@@ -23,7 +23,8 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void setUp() throws Exception {
+    public void setUp(ITestResult iTestResult) throws Exception{
+        ReportManager.getInstance().startTest(iTestResult.getMethod().getMethodName());
         switch (browser){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver","resource/chromedriver.exe");
@@ -39,35 +40,35 @@ public class BaseTest {
         webDriver.get(url);
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult iTestResult){
-        try {
-            switch (iTestResult.getStatus()){
-                case ITestResult.FAILURE:
-                    ReportManager.getInstance().getTest().log(Status.FAIL, "Test failed");
-                    break;
-                case ITestResult.SKIP:
-                    ReportManager.getInstance().getTest().log(Status.SKIP, "Test skipped");
-                    break;
-                case ITestResult.SUCCESS:
-                    ReportManager.getInstance().getTest().log(Status.PASS, "Test passed");
-                    break;
-                default:
-                    ReportManager.getInstance().getTest().log(Status.FAIL, "Test incomplete");
-            }
+        @AfterMethod
+        public void tearDown(ITestResult iTestResult){
+            try {
+                switch (iTestResult.getStatus()){
+                    case ITestResult.FAILURE:
+                        ReportManager.getInstance().getTest().log(Status.FAIL, "Test failed");
+                        break;
+                    case ITestResult.SKIP:
+                        ReportManager.getInstance().getTest().log(Status.SKIP, "Test skipped");
+                        break;
+                    case ITestResult.SUCCESS:
+                        ReportManager.getInstance().getTest().log(Status.PASS, "Test passed");
+                        break;
+                    default:
+                        ReportManager.getInstance().getTest().log(Status.FAIL, "Test incomplete");
+                }
 
-            if(iTestResult.getStatus() != ITestResult.SUCCESS && iTestResult.getThrowable() != null){
-                ReportManager.getInstance().getTest().log(Status.FAIL, iTestResult.getThrowable().getMessage());
-                ScreenShotHelper.takeScreenShotAndAdToHTMLReport(webDriver, Status.FAIL, "Failure Image");
-            }
+                if(iTestResult.getStatus() != ITestResult.SUCCESS && iTestResult.getThrowable() != null){
+                    ReportManager.getInstance().getTest().log(Status.FAIL, iTestResult.getThrowable().getMessage());
+                    ScreenShotHelper.takeScreenShotAndAdToHTMLReport(webDriver, Status.FAIL, "Failure Image");
+                }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if(webDriver != null)
-                webDriver.quit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                if(webDriver != null)
+                    webDriver.quit();
+            }
         }
-    }
 
     @AfterSuite
     public static void tearDownSuite(){

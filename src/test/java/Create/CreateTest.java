@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit;
 public class CreateTest extends BaseTest {
 
     @Test
-    public void testSuccessfulCrate(){
-        GoToCreate.as(webDriver, "testdiplo4@gmail.com");
+    public void testSuccessCreateUser(){
+        GoToCreate.as(webDriver, "testdiplo40@gmail.com");
         webDriver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
         AddClient.withTheData(webDriver, "Test", "Testing","123456789", "ProcessMaker",
                 "Zona Sur", "La Paz", "California", "00000", "United States", "Test para Diplomado",
