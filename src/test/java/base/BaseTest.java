@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import helper.ScreenShotHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -13,6 +14,8 @@ import report.ReportManager;
 
 public class BaseTest {
     protected WebDriver webDriver;
+    private String url = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    private String browser = "chrome";
 
     @BeforeSuite
     public static void setUpSuite() throws Exception {
@@ -20,15 +23,22 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void setUp(ITestResult iTestResult){
-
-        ReportManager.getInstance().startTest(iTestResult.getMethod().getMethodName());
-
-        System.setProperty("webdriver.chrome.driver","resource/chromedriver.exe");
-        webDriver = new ChromeDriver();
-        webDriver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+    public void setUp() throws Exception {
+        switch (browser){
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver","resource/chromedriver.exe");
+                webDriver = new ChromeDriver();
+                break;
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver","resource/geckodriver.exe");
+                webDriver = new FirefoxDriver();
+                break;
+            default:
+                throw new Exception(browser + " no soportado");
+        }
+        webDriver.get(url);
     }
-/*
+
     @AfterMethod
     public void tearDown(ITestResult iTestResult){
         try {
@@ -58,7 +68,7 @@ public class BaseTest {
                 webDriver.quit();
         }
     }
-*/
+
     @AfterSuite
     public static void tearDownSuite(){
         ReportManager.getInstance().flush();

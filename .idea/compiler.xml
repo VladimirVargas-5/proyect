@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Class9_Login_ScreenPlay_Ejericios_Resueltos" />
+        <module name="DiplomaProject" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Class9_Login_ScreenPlay_Ejericios_Resueltos" target="1.11" />
+      <module name="DiplomaProject" target="1.11" />
     </bytecodeTargetLevel>
   </component>
 </project>
